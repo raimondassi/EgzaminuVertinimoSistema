@@ -1,0 +1,28 @@
+{
+  "egzaminas" : {
+    "id" : 124,
+    "pavadinimas" : "oop pagrindai",
+    "tipas" : null
+  },
+  "studentoRezultatai" : [ {
+    "id" : 1234,
+    "vardas" : "Antanas",
+    "pavarde" : "Fontanas",
+    "ivertinimas" : 3
+  }, {
+    "id" : 1237,
+    "vardas" : "Antanina",
+    "pavarde" : "SvietoLygintoja",
+    "ivertinimas" : 5
+  }, {
+    "id" : 1235,
+    "vardas" : "Elzyte",
+    "pavarde" : "Visazine",
+    "ivertinimas" : 8
+  }, {
+    "id" : 1236,
+    "vardas" : "Jonas",
+    "pavarde" : "Ponas",
+    "ivertinimas" : 10
+  } ]
+}

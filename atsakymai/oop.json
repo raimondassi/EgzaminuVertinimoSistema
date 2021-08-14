@@ -1,0 +1,25 @@
+{
+  "egzaminas":{
+    "id":"124",
+    "pavadinimas":"oop pagrindai",
+    "tipas":"testas"
+  },
+  "atsakymai":[
+    {
+      "klausimas":1,
+      "atsakymas":"a"
+    },
+    {
+      "klausimas":2,
+      "atsakymas":"a"
+    },
+    {
+      "klausimas":3,
+      "atsakymas":"a"
+    },
+    {
+      "klausimas":4,
+      "atsakymas":"a"
+    }
+  ]
+}
