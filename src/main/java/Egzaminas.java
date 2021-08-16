@@ -11,6 +11,16 @@ public class Egzaminas {
     @JsonProperty("tipas")
     private String tipas;
 
+    public Egzaminas() {
+    }
+
+    public Egzaminas(Integer id, String pavadinimas, String tipas) {
+        this.id = id;
+        this.pavadinimas = pavadinimas;
+        this.tipas = tipas;
+    }
+
+
     public Integer getId() {
         return id;
     }

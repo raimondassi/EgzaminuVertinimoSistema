@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 
+
 public class Servisai {
 
     List<StudentoAtsakymas> studentuAtsakymai = new ArrayList<>();
@@ -30,12 +31,12 @@ public class Servisai {
 
     }
 
-    private void surasomeIRezultatuFaila(File egzaminoVertinimas, Rezultatai rezultatai) throws IOException {
+    public void surasomeIRezultatuFaila(File egzaminoVertinimas, Rezultatai rezultatai) throws IOException {
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         mapper.writeValue(egzaminoVertinimas, rezultatai);
     }
 
-    private Rezultatai ivertinameAtsakymus(File egzaminoTeisingiAtsakymai) throws IOException {
+    public Rezultatai ivertinameAtsakymus(File egzaminoTeisingiAtsakymai) throws IOException {
 
         TeisingiAtsakymai teisingiAtsakymai = mapper.readValue(egzaminoTeisingiAtsakymai, TeisingiAtsakymai.class);
         List<StudentoRezultatas> studentoRezultatai = new ArrayList<>();
@@ -69,7 +70,7 @@ public class Servisai {
 
     }
 
-    private File sukuriameEgzaminoVertinimoFaila(String egzaminas) throws IOException {
+    public File sukuriameEgzaminoVertinimoFaila(String egzaminas) throws IOException {
         File egzaminoVertinimoFailas = new File(configuration.vertinimuDirektorija + egzaminas + "Vertinimas.json");
         if (!egzaminoVertinimoFailas.exists()) {
             egzaminoVertinimoFailas.createNewFile();
@@ -77,7 +78,7 @@ public class Servisai {
         return egzaminoVertinimoFailas;
     }
 
-    private void sudedameVisusAtsakymusISarasa(File egzaminoDirektorija) throws IOException {
+    public void sudedameVisusAtsakymusISarasa(File egzaminoDirektorija) throws IOException {
         Stream<Path> paths = Files.walk(Paths.get(egzaminoDirektorija.toURI()));
         paths
                 .filter(Files::isRegularFile)
