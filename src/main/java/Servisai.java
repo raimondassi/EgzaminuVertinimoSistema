@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 
-
 public class Servisai {
 
     List<StudentoAtsakymas> studentuAtsakymai = new ArrayList<>();
@@ -26,7 +25,7 @@ public class Servisai {
         sudedameVisusAtsakymusISarasa(egzaminoDirektorija);
         Rezultatai rezultatai = ivertinameAtsakymus(egzaminoTeisingiAtsakymai);
         surasomeIRezultatuFaila(egzaminoVertinimas, rezultatai);
-        System.out.println(egzaminoVertinimas.getName()+" failas sukurtas");
+        System.out.println(egzaminoVertinimas.getName() + " failas sukurtas");
 
 
     }
@@ -40,8 +39,8 @@ public class Servisai {
 
         TeisingiAtsakymai teisingiAtsakymai = mapper.readValue(egzaminoTeisingiAtsakymai, TeisingiAtsakymai.class);
         List<StudentoRezultatas> studentoRezultatai = new ArrayList<>();
-        Integer teisinguAtsakymuKiekis=0;
-        Integer atsakymuKiekis=0;
+        Integer teisinguAtsakymuKiekis = 0;
+        Integer atsakymuKiekis = 0;
 
         Rezultatai rezultatai = new Rezultatai(new Egzaminas(), studentoRezultatai);
         rezultatai.getEgzaminas().setId(teisingiAtsakymai.getEgzaminas().getId());
@@ -61,8 +60,8 @@ public class Servisai {
                 }
             }
             studentoRezultatas.setIvertinimas(Math.round(teisinguAtsakymuKiekis.floatValue() / atsakymuKiekis.floatValue() * 10));
-            atsakymuKiekis=0;
-            teisinguAtsakymuKiekis=0;
+            atsakymuKiekis = 0;
+            teisinguAtsakymuKiekis = 0;
             studentoRezultatai.add(studentoRezultatas);
         }
         rezultatai.setStudentoRezultatas(studentoRezultatai);

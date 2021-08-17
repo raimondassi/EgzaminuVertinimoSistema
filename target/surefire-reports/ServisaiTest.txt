@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: ServisaiTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.004 s <<< FAILURE! - in ServisaiTest
+ServisaiTest  Time elapsed: 0.004 s  <<< ERROR!
+org.junit.platform.commons.JUnitException: @BeforeAll method 'public void ServisaiTest.pasikuriameAtsakymuFaila()' must be static unless the test class is annotated with @TestInstance(Lifecycle.PER_CLASS).
+

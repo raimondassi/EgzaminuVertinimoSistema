@@ -23,7 +23,7 @@ public class Main {
 
     private void egzaminoVertinimas(String egzaminas, String atsakymuFailoPavadinimas) throws IOException {
 
-        File egzaminoDirektorija = new File(configuration.egzaminuDirektorija+egzaminas+"/");
+        File egzaminoDirektorija = new File(configuration.egzaminuDirektorija + egzaminas + "/");
         File egzaminoTeiksingiAtsakymai = new File(configuration.atsakymuDirektorija + atsakymuFailoPavadinimas);
         if (egzaminoTeiksingiAtsakymai.exists() && egzaminoDirektorija.exists()) {
             servisai.vertinameEgzamina(egzaminoDirektorija, egzaminoTeiksingiAtsakymai, egzaminas);
