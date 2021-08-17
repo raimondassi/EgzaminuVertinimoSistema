@@ -22,18 +22,32 @@ class ServisaiTest {
 
 
     private Servisai servisai;
+   public List<Atsakymas> atsakymai;
 
     @Mock
     public StudentoAtsakymas studentoAtsakymas;
     public StudentoRezultatas studentoRezultatas;
     public TeisingiAtsakymai teisingiAtsakymai;
     public Configuration configuration;
+    public Studentas studentas;
+    public Egzaminas egzaminas;
+    public Atsakymas atsakymas;
+
+
 
     @BeforeAll
-    public  void pasikuriameRezultatuFaila(){
+    public  void pasikuriameAtsakymuFaila(){
+      //  atsakymai=List.of()
+ studentas=new Studentas(1234, "Kazys", "Kazlekas");
+ egzaminas=new Egzaminas(123, "biologija", "testas");
 
-     //  Rezultatai rezultatai=new Rezultatai(new Egzaminas(1, "biologija", "testas"), new List.of());
+//studentoAtsakymas=new StudentoAtsakymas(Studentas studentas, Egzaminas egzaminas, List<Atsakymas> atsakymai)
+
+
     }
+
+
+
 
     @BeforeEach
     public void setup(){

@@ -8,9 +8,13 @@ public class StudentoRezultatas extends Studentas{
     public StudentoRezultatas() {
     }
 
-    public StudentoRezultatas(Integer ivertinimas) {
+    public StudentoRezultatas(Integer ivertinimas, Integer id, String vardas, String pavarde) {
+        super(id, vardas, pavarde);
         this.ivertinimas = ivertinimas;
+
     }
+
+
 
     public Integer getIvertinimas() {
         return ivertinimas;
