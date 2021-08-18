@@ -57,7 +57,6 @@ class ServisaiTest {
 
     @Test
     public void testCorrectAnswers() {
-
     }
 
     @Test
@@ -71,8 +70,8 @@ class ServisaiTest {
     }
 
     @Test
-    public void testArGausimExeprionJeiNerasimeDirektorijos(){
-       String blogaNuoroda= (egzaminuDirektorija.getPath().toString() + "blogas");
-       assertThrows(IOException.class,() -> servisai.sudedameVisusAtsakymusISarasa(new File(blogaNuoroda))) ;
+    public void testArGausimExeprionJeiNerasimeDirektorijos() {
+        String blogaNuoroda = (egzaminuDirektorija.getPath().toString() + "blogas");
+        assertThrows(DirectoryDoesNotExistExeption.class, () -> servisai.sudedameVisusAtsakymusISarasa(new File(blogaNuoroda)));
     }
 }

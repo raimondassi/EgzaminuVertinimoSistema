@@ -82,13 +82,18 @@ public class Servisai {
         return egzaminoVertinimoFailas;
     }
 
-    public List<StudentoAtsakymas> sudedameVisusAtsakymusISarasa(File egzaminoDirektorija) {
+    public List<StudentoAtsakymas> sudedameVisusAtsakymusISarasa(File egzaminoDirektorija)  {
         Stream<Path> paths = Stream.of();
         try {
             paths = Files.walk(Paths.get(egzaminoDirektorija.toURI()));
+            tikrinameArEgzistuojaDirektorija(egzaminoDirektorija);
         } catch (IOException e) {
             System.out.println("Nerastas failas ar direktorija" + e);
         }
+        catch (DirectoryDoesNotExistExeption e) {
+            System.out.println("Direktorija neegzistuoja" + e);
+        }
+
         paths
                 .filter(Files::isRegularFile)
                 .forEach(path -> {
@@ -99,6 +104,10 @@ public class Servisai {
                     }
                 });
         return studentuAtsakymai;
+    }
+
+    private void tikrinameArEgzistuojaDirektorija(File egzaminoDirektorija) throws DirectoryDoesNotExistExeption {
+        if(!egzaminoDirektorija.exists()) { throw new DirectoryDoesNotExistExeption("Tokia direktorija neegzistuoja");}
     }
 }
 
