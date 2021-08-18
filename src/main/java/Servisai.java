@@ -83,7 +83,7 @@ public class Servisai {
     }
 
     public List<StudentoAtsakymas> sudedameVisusAtsakymusISarasa(File egzaminoDirektorija) {
-        Stream<Path> paths = null;
+        Stream<Path> paths = Stream.of();
         try {
             paths = Files.walk(Paths.get(egzaminoDirektorija.toURI()));
         } catch (IOException e) {
@@ -95,7 +95,7 @@ public class Servisai {
                     try {
                         studentuAtsakymai.add(mapper.readValue(path.toFile(), StudentoAtsakymas.class));
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        System.out.println("negalimas nuskaitymas nes bloga nuoroda" + e);;
                     }
                 });
         return studentuAtsakymai;

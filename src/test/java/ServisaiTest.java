@@ -2,6 +2,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.function.Executable;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.jupiter.api.Assertions;
@@ -67,5 +68,11 @@ class ServisaiTest {
                 .filter(Files::isRegularFile)
                 .count();
         assertEquals(failuKiekisDirektorijoje, studentuAtsakymuKiekis);
+    }
+
+    @Test
+    public void testArGausimExeprionJeiNerasimeDirektorijos(){
+       String blogaNuoroda= (egzaminuDirektorija.getPath().toString() + "blogas");
+       assertThrows(IOException.class,() -> servisai.sudedameVisusAtsakymusISarasa(new File(blogaNuoroda))) ;
     }
 }
