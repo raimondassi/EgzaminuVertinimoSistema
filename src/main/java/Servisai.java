@@ -11,41 +11,43 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-
 public class Servisai {
-
     List<StudentoAtsakymas> studentuAtsakymai = new ArrayList<>();
     List<Rezultatai> rezultatai = new ArrayList<>();
     ObjectMapper mapper = new ObjectMapper();
     Configuration configuration = new Configuration();
 
-
-    public void vertinameEgzamina(File egzaminoDirektorija, File egzaminoTeisingiAtsakymai, String egzaminas) throws IOException {
-        File egzaminoVertinimas = sukuriameEgzaminoVertinimoFaila(egzaminas);
+    public void vertinameEgzamina(File egzaminoDirektorija, File egzaminoTeisingiAtsakymai, String egzaminas) {
+        File egzaminoVertinimas = null;
+        egzaminoVertinimas = sukuriameEgzaminoVertinimoFaila(egzaminas);
         sudedameVisusAtsakymusISarasa(egzaminoDirektorija);
         Rezultatai rezultatai = ivertinameAtsakymus(egzaminoTeisingiAtsakymai);
         surasomeIRezultatuFaila(egzaminoVertinimas, rezultatai);
         System.out.println(egzaminoVertinimas.getName() + " failas sukurtas");
-
-
     }
 
-    public void surasomeIRezultatuFaila(File egzaminoVertinimas, Rezultatai rezultatai) throws IOException {
+    public void surasomeIRezultatuFaila(File egzaminoVertinimas, Rezultatai rezultatai) {
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        mapper.writeValue(egzaminoVertinimas, rezultatai);
+        try {
+            mapper.writeValue(egzaminoVertinimas, rezultatai);
+        } catch (IOException e) {
+            System.out.println("Nerastas failas ar direktorija" + e);
+        }
     }
 
-    public Rezultatai ivertinameAtsakymus(File egzaminoTeisingiAtsakymai) throws IOException {
-
-        TeisingiAtsakymai teisingiAtsakymai = mapper.readValue(egzaminoTeisingiAtsakymai, TeisingiAtsakymai.class);
+    public Rezultatai ivertinameAtsakymus(File egzaminoTeisingiAtsakymai) {
+        TeisingiAtsakymai teisingiAtsakymai = null;
+        try {
+            teisingiAtsakymai = mapper.readValue(egzaminoTeisingiAtsakymai, TeisingiAtsakymai.class);
+        } catch (IOException e) {
+            System.out.println("Nerastas failas ar direktorija" + e);
+        }
         List<StudentoRezultatas> studentoRezultatai = new ArrayList<>();
         Integer teisinguAtsakymuKiekis = 0;
         Integer atsakymuKiekis = 0;
-
         Rezultatai rezultatai = new Rezultatai(new Egzaminas(), studentoRezultatai);
         rezultatai.getEgzaminas().setId(teisingiAtsakymai.getEgzaminas().getId());
         rezultatai.getEgzaminas().setPavadinimas(teisingiAtsakymai.getEgzaminas().getPavadinimas());
-
         for (StudentoAtsakymas s : studentuAtsakymai) {
             StudentoRezultatas studentoRezultatas = new StudentoRezultatas();
             studentoRezultatas.setId(s.getStudentas().getId());
@@ -66,19 +68,27 @@ public class Servisai {
         }
         rezultatai.setStudentoRezultatas(studentoRezultatai);
         return rezultatai;
-
     }
 
-    public File sukuriameEgzaminoVertinimoFaila(String egzaminas) throws IOException {
+    public File sukuriameEgzaminoVertinimoFaila(String egzaminas) {
         File egzaminoVertinimoFailas = new File(configuration.vertinimuDirektorija + egzaminas + "Vertinimas.json");
         if (!egzaminoVertinimoFailas.exists()) {
-            egzaminoVertinimoFailas.createNewFile();
+            try {
+                egzaminoVertinimoFailas.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Nerastas failas ar direktorija" + e);
+            }
         }
         return egzaminoVertinimoFailas;
     }
 
-    public void sudedameVisusAtsakymusISarasa(File egzaminoDirektorija) throws IOException {
-        Stream<Path> paths = Files.walk(Paths.get(egzaminoDirektorija.toURI()));
+    public List<StudentoAtsakymas> sudedameVisusAtsakymusISarasa(File egzaminoDirektorija) {
+        Stream<Path> paths = null;
+        try {
+            paths = Files.walk(Paths.get(egzaminoDirektorija.toURI()));
+        } catch (IOException e) {
+            System.out.println("Nerastas failas ar direktorija" + e);
+        }
         paths
                 .filter(Files::isRegularFile)
                 .forEach(path -> {
@@ -88,6 +98,7 @@ public class Servisai {
                         e.printStackTrace();
                     }
                 });
+        return studentuAtsakymai;
     }
 }
 

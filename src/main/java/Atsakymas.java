@@ -8,6 +8,14 @@ public class Atsakymas {
     @JsonProperty("atsakymas")
     String atsakymas;
 
+    public Atsakymas() {
+    }
+
+    public Atsakymas(Integer klausimas, String atsakymas) {
+        this.klausimas = klausimas;
+        this.atsakymas = atsakymas;
+    }
+
     public Integer getKlausimas() {
         return klausimas;
     }
